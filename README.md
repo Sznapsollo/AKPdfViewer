@@ -1,6 +1,6 @@
 # AKPdfViewer
 
-PDF viewer that can be embeded and used internally in Xamarin android applications
+PDF viewer that can be embeded and used internally in Xamarin android applications. Written in C#.
 
 ## About
 This is lighweight android pdf viewer that can be easily embedded in any Xamarin android app. Reading PDFs internally in apps for android is not that straightforward - AKPdfViewer utilizes PDFRenderer class provided by android to process any pdf file provided by its url and display it to user in scrollable ListView. User views pdf swiping from top<>bottom. Viewer supports pinch zooming, double tapping, asynchrous loading, tries to keep in memory only significant pdf pages. Application in this git is a simple wrapper that showcases on its main page MainActivity.cs how AKPdfViewer should be initiated to allow PDF browsing.
