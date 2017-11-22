@@ -9,6 +9,7 @@ using Android.Views;
 using Android.Graphics.Pdf;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
              
 namespace AKPdfViewer
 {
@@ -98,7 +99,7 @@ namespace AKPdfViewer
 								{
 									try
 									{
-										_pdfPageBitmap = Android.Graphics.Bitmap.CreateBitmap((int)(page.Width * zoom), (int)(page.Height * zoom), Android.Graphics.Bitmap.Config.Argb4444);
+                                        _pdfPageBitmap = Android.Graphics.Bitmap.CreateBitmap((int)(page.Width.Px() * zoom), (int)(page.Height.Px() * zoom), Android.Graphics.Bitmap.Config.Argb4444);
 										page.Render(_pdfPageBitmap, null, null, PdfRenderMode.ForDisplay);
 									}
 									catch (Exception e)
@@ -422,7 +423,7 @@ namespace AKPdfViewer
             _pdfToolsContainer = new RelativeLayout(_context);
             RelativeLayout.LayoutParams _pdfToolsContainerLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
             _pdfToolsContainer.LayoutParameters = _pdfToolsContainerLayoutParams;
-            _pdfToolsContainer.SetPadding(10, 10, 10, 10);
+            _pdfToolsContainer.SetPadding(10.Px(), 10.Px(), 10.Px(), 10.Px());
             _pdfToolsContainer.SetBackgroundColor(Android.Graphics.Color.Argb(100, 0, 0, 0));
 
             _pdfPagesCount = new TextView(Context);
@@ -445,7 +446,7 @@ namespace AKPdfViewer
                 RelativeLayout.LayoutParams _pdfCloseButtonContainerLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
                 _pdfCloseButtonContainerLayoutParams.AddRule(LayoutRules.AlignParentRight);
                 _pdfCloseButtonContainer.LayoutParameters = _pdfCloseButtonContainerLayoutParams;
-                _pdfCloseButtonContainer.SetPadding(10, 10, 10, 10);
+                _pdfCloseButtonContainer.SetPadding(10.Px(), 10.Px(), 10.Px(), 10.Px());
                 _pdfCloseButtonContainer.SetBackgroundColor(Android.Graphics.Color.Argb(100, 0, 0, 0));
 
                 _closeButton = new TextView(Context);
@@ -541,5 +542,21 @@ namespace AKPdfViewer
             Console.WriteLine(string.Format("{0} {1} called", "ComponentCallbacksNotifications", "OnLowMemory"));
         }
         #endregion
+    }
+
+    static class Extensions
+    {
+        public static int Px(this int dp)
+        {
+            if (dp == 0)
+                return 0;
+
+            return ((float)dp).Px();
+        }
+
+        public static int Px(this float dp)
+        {
+            return (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dp, Android.App.Application.Context.Resources.DisplayMetrics);
+        }
     }
 }
