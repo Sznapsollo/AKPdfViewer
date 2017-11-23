@@ -12,26 +12,26 @@ This application contains embedded in assets test pdf file that showcases workin
 1. Embed AKPdfViewer.cs class in your application
 2. When you want to display the viewer with pdf contents:
 
-1. Initiate the viewer by providing it with filePath which is url of the pdf file
-* AKPdfViewer pdfViewer = new AKPdfViewer(Application.Context, filePath); 
+	1. Initiate the viewer by providing it with filePath which is url of the pdf file
+		* AKPdfViewer pdfViewer = new AKPdfViewer(Application.Context, filePath); 
 
-2. Set Margins that viewer should have. If they are set to 0 then viewer will cover all screen.
-* pdfViewer.MarginTop = pdfViewer.MarginBottom = pdfViewer.MarginLeft = pdfViewer.MarginRight = 0;
+	2. Set Margins that viewer should have. If they are set to 0 then viewer will cover all screen.
+		* pdfViewer.MarginTop = pdfViewer.MarginBottom = pdfViewer.MarginLeft = pdfViewer.MarginRight = 0;
          
-3. Call SetLayout which sets viewer layout depending on margins set above
-* pdfViewer.SetLayout();	
+	3. Call SetLayout which sets viewer layout depending on margins set above
+		* pdfViewer.SetLayout();	
 
-4. [optional] call SetModalMode method. This if provided with true as second argument will display Close button on the viewer. Close button Label is determined by second agument.
-* pdfViewer.SetModalMode(true, "Close");
+	4. [optional] call SetModalMode method. This if provided with true as second argument will display Close button on the viewer. Close button Label is determined by second agument.
+		* pdfViewer.SetModalMode(true, "Close");
 
-5. Finally add viewer to you screen. It is simply added as subview.
-* mainView.AddView(pdfViewer);
+	5. Finally add viewer to you screen. It is simply added as subview.
+		* mainView.AddView(pdfViewer);
 
-6. [optional] hook up to DidDismiss event if you want to handle dismissing of viewer. DidDismiss will fire when user clicks close button so viewer should be called with SetModalMode
-* pdfViewer.DidDismiss += DidDismiss;
+	6. [optional] hook up to DidDismiss event if you want to handle dismissing of viewer. DidDismiss will fire when user clicks close button so viewer should be called with SetModalMode
+		* pdfViewer.DidDismiss += DidDismiss;
 
-7. [optional] hook up to OnCustomerPdfViewerError event if you want to handle any errors that appear during pages rendering
-* pdfViewer.OnCustomerPdfViewerError += PopulateErrorToWebView;
+	7. [optional] hook up to OnCustomerPdfViewerError event if you want to handle any errors that appear during pages rendering
+		* pdfViewer.OnCustomerPdfViewerError += PopulateErrorToWebView;
 
 3. If you want to close the viewer just remove it from the view (for example from DidDismiss Event handler) and dispose of pdfViewer object.
 
